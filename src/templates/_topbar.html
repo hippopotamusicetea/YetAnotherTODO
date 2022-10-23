@@ -1,0 +1,43 @@
+<nav class="navbar is-primary is-fixed-top has-shadow">
+	<div class="navbar-brand  is-justify-content-center is-flex-grow-1">
+		<div class="content mt-1">Todo List</div>
+		<a aria-expanded="false" aria-label="menu" class="navbar-burger" data-target="bottom-bar" role="button">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+	<div class="navbar-menu" id="bottom-bar">
+		<div class="navbar-item has-dropdown has-dropdown-up is-justify-content-center is-flex-grow-1" id="action-menu">
+			<a class="navbar-link is-arrowless">Actions</a>
+			<div class="navbar-dropdown is-boxed">
+				<div class="buttons is-centered">
+					<button class="navbar-item button is-primary is-light is-small is-centered js-modal-trigger"
+					        data-target="new-task-modal">Add Task
+					</button>
+				</div>
+				<hr class="navbar-divider">
+				<div class="buttons is-centered">
+					<button class="navbar-item button is-danger is-light is-small js-modal-trigger"
+					        data-target="new-task-modal">High Priority
+					</button>
+					<button class="navbar-item button is-warning is-light is-small js-modal-trigger"
+					        data-target="new-task-modal">Medium Priority
+					</button>
+					<button class="navbar-item button is-info is-light is-small js-modal-trigger"
+					        data-target="new-task-modal">Low Priority
+					</button>
+				</div>
+				<hr class="navbar-divider">
+				<div class="buttons is-centered">
+					<button class="navbar-item button is-primary is-light is-small js-modal-trigger"
+					        data-target="new-task-modal">On List For More Than A Week
+					</button>
+					<button class="navbar-item button is-primary is-light is-small js-modal-trigger"
+					        data-target="new-task-modal">Due In Next Week
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>

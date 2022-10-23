@@ -1,0 +1,150 @@
+body {
+  font-family: "Helvetica";
+}
+
+button.delete {
+  position: absolute;
+  top: 10px !important;
+  right: 10px !important;
+}
+
+.buttons .button {
+  margin-bottom: 0.1rem !important;
+}
+
+.card-footer-item#complete {
+  padding: 0.1rem;
+  min-width: 5rem;
+}
+
+.card-footer-item#edit {
+  padding: 0.1rem;
+  min-width: 5rem;
+}
+
+.card-footer-item#delete {
+  padding: 0.1rem;
+  min-width: 5rem;
+}
+
+.todo-card#todo-card {
+  width: 80%;
+  margin-top:2%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.message-body {
+  text-align: center;
+}
+
+.card-footer-item {
+  border: 1px solid #ededed !important;
+}
+
+.card-footer-item:hover {
+  border: 1px solid black !important;
+}
+
+p.title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+text-area {
+  white-space: pre-wrap;
+}
+
+
+.body_div {
+  display: block;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: auto;
+  margin-right: auto;
+  width:50rem;
+  border-style: inset;
+  border-width: 1px;
+}
+
+.todo-card#empty-card {
+  width: 80%;
+  margin-top:2%;
+  margin-left: auto;
+  margin-right: auto;
+    box-shadow: 0 0 50px 15px #48abe0;
+}
+
+.box {
+margin-top: 5%;
+padding:1%;
+}
+
+.level {
+margin: 1%;
+}
+
+#toast-container {
+margin-top:1%;
+}
+
+#action-menu {
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+  height: 0;
+  line-height: 0;
+  padding: 0 1em;
+}
+
+#action-menu.show-menu {
+    height: 15rem;
+}
+
+.menu-list .button {
+height: 2rem;
+}
+.menu .menu-label {
+height:.5rem;
+padding:.2rem;
+}
+li {
+padding:0.1rem !important;
+}
+.todo-content {
+white-space: pre-wrap;
+}
+.modal-card, .modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.modal-card, .modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+
+#new-task-form {
+width:60%;
+margin-left: auto;
+margin-right: auto;
+padding: .25rem;
+margin-top:3rem;
+}
+
+.body-div {
+width:30rem;
+margin-left: auto;
+margin-right: auto;
+color:
+}
+
+.todo-div {
+margin-left: 0;
+margin-right: 0;
+color:
+}
+
+.footer {
+margin-top:2rem;
+padding:1.5rem !important;
+}

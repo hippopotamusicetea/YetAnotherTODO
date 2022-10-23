@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="is-active">
+	{% for x in todos %}
+	<div class="todo-card" id="todo-card">
+		<div class="card m-5">
+			<header class="card-header">
+				<p class="card-header-title is-centered">{{ x.name }}</p>
+			</header>
+			<div class="card-content">
+				<div class="content">
+					<form method="POST" name="id-form">
+						<input name="record-id" type="hidden" value="{{ x.id }}">
+						<strong>Details:</strong><br>
+						{{ x.body }}
+						<br>
+						<strong>Priority:</strong><br>
+						{{ x.priority }}
+						<br>
+						<strong>Current Status:</strong><br>
+						{{ x.complete }}
+						<br>
+
+						<div class="divider"></div>
+						<div class="buttons is-grouped is-centered mg-small">
+							<button class="card-footer-item button is-normal" formaction="{{ url_for('complete') }}"
+							        id="complete">Complete
+							</button>
+							<button class="card-footer-item button is-normal js-modal-trigger"
+							        formaction="{{ url_for('update', todo_id=x.id) }}" id="edit">Edit
+							</button>
+							<button class="card-footer-item is-normal button" formaction="{{ url_for('delete') }}"
+							        id="delete">Delete
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% endfor %}
+</section>
+{% endblock %}
+{% block script %}
+
+var colors = ["#80BA9D", "#9BD1A7", "#BEE0B4","#FFF7AB", "#FF9C9F", "#c0aedf", "#f9b4a7", "#d29dda", "#8e94fd", "#85d280", "#c0e5f6"];
+var cardHead = document.querySelectorAll(".card-header");
+for (i = 0; i < card-head.length; i++) {
+cardHead[i].style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+}
+
+function submitHidden() {
+document.getElementById('id-form').submit();
+}
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Todo App</title>
+	<link href="static/css/style.css" rel="stylesheet" type="text/css">
+	<link href="https://unpkg.com/bulmaswatch/darkly/bulmaswatch.min.css" rel="stylesheet">
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<script src="/static/js/todo.js"></script>
+	<script src="/static/js/notification.js"></script>
+	<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+			rel="stylesheet"
+	/>
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	{{ toastr.include_jquery() }}
+	{{ toastr.include_toastr_css() }}
+	{{ toastr.message() }}
+</head>
+<body>
+
+
+{% include "_statsbar.html" %}
+{% block content %}
+{% endblock %}
+
+{% include "_newtask.html" %}
+{{ toastr.include_toastr_js() }}
+
+{% block script %}
+{% endblock %}
+<footer class="footer">
+	<div class="content has-text-centered">
+		<p>
+			<strong>JM</strong><br>
+			Made With Bulma, Bulmaswatch, FontAwesome and BulmaJS.
+		</p>
+	</div>
+</footer>
+</body>
+</html>

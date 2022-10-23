@@ -1,0 +1,51 @@
+<div class="modal" id="update-task-modal">
+	<div class="modal-background">
+		<div class="modal-content">
+			<div class="box mt-3">
+				<div class="card">
+					<button class="delete"></button>
+					<div class="card-content">
+
+						<form action="{{ url_for('update') }}" id="update-task" method="POST">
+							<div class="field">
+								<label class="label" for="name">Todo Name</label>
+								<div class="control">
+									<input class="input is-primary" id="name" name="name" required type="text">
+								</div>
+							</div>
+							<div class="field">
+								<label class="label" for="priority">Priority</label>
+								<div class="control">
+									<div class="select is-primary">
+										<select id="priority" name="priority" required>
+											<option>High</option>
+											<option>Medium</option>
+											<option>Low</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label" for="due-date">Due Date</label>
+								<div class="control">
+									<input id="due-date" type="date">
+									<div class="field">
+										<label class="label" for="body">Details</label>
+										<div class="control">
+										<textarea class="textarea is-primary" id="body" name="body" required
+										          rows="3"></textarea>
+										</div>
+									</div>
+									<input id="complete" name="complete" type="hidden" value="0">
+								</div>
+							</div>
+							<footer class="card-footer">
+								<button class="button is-primary is-fullwidth m-2" type="submit">Submit</button>
+							</footer>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
