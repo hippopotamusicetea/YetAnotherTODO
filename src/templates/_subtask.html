@@ -1,0 +1,48 @@
+{% if child_dict[x.id] %}
+<table class="table subtask-table">
+    <thead class="has-text-weight-semibold">
+    <tr>
+        <th>
+            Subtask
+        </th>
+        <th>
+            Time to complete
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in child_dict[x.id] %}
+    <tr>
+
+        <td class="subtask-content">{{ c.subtask }}</td>
+        <td>{{ c.completion_time }} minutes</td>
+        {% if c.complete == "1" %}
+        <td><span class="has-text-success">Complete</span></td>
+        {% elif c.complete == "0" %}
+        <td><span class="has-text-danger">Incomplete</span></td>
+        {% endif %}
+        <td>
+            <form method="POST" name="subtask-form" id="subtask-form">
+                <input name="subtask-id" id="subtask-id" type="hidden" value="{{ c.id }}">
+            </form>
+            <button class="button is-small" formaction="{{ url_for('subtask_complete') }}" form="subtask-form"
+                    id="complete-subtask">
+                <span class="icon"><i class="fa-solid fa-check fa-xs"></i></span></button>
+            <button class="button is-small js-modal-trigger"
+                    data-target="edit-subtask-modal" data-id="{{ c.id }}"><span class="icon"><i
+                    class="fa-solid fa-pen fa-xs"></i></span></button>
+            <button class="button is-small" formaction="{{ url_for('subtask_delete') }}" form="subtask-form"
+                    id="delete-subtask"><span
+                    class="icon"><i class="fa-solid fa-xmark fa-xs"></i></span></button>
+
+        </td>
+        {% endfor %}
+    </tr>
+    </tbody>
+</table>
+{% endif %}

@@ -1,43 +1,91 @@
-<nav class="navbar is-primary is-fixed-top has-shadow">
-	<div class="navbar-brand  is-justify-content-center is-flex-grow-1">
-		<div class="content mt-1">Todo List</div>
-		<a aria-expanded="false" aria-label="menu" class="navbar-burger" data-target="bottom-bar" role="button">
-			<span aria-hidden="true"></span>
-			<span aria-hidden="true"></span>
-			<span aria-hidden="true"></span>
-		</a>
-	</div>
-	<div class="navbar-menu" id="bottom-bar">
-		<div class="navbar-item has-dropdown has-dropdown-up is-justify-content-center is-flex-grow-1" id="action-menu">
-			<a class="navbar-link is-arrowless">Actions</a>
-			<div class="navbar-dropdown is-boxed">
-				<div class="buttons is-centered">
-					<button class="navbar-item button is-primary is-light is-small is-centered js-modal-trigger"
-					        data-target="new-task-modal">Add Task
-					</button>
-				</div>
-				<hr class="navbar-divider">
-				<div class="buttons is-centered">
-					<button class="navbar-item button is-danger is-light is-small js-modal-trigger"
-					        data-target="new-task-modal">High Priority
-					</button>
-					<button class="navbar-item button is-warning is-light is-small js-modal-trigger"
-					        data-target="new-task-modal">Medium Priority
-					</button>
-					<button class="navbar-item button is-info is-light is-small js-modal-trigger"
-					        data-target="new-task-modal">Low Priority
-					</button>
-				</div>
-				<hr class="navbar-divider">
-				<div class="buttons is-centered">
-					<button class="navbar-item button is-primary is-light is-small js-modal-trigger"
-					        data-target="new-task-modal">On List For More Than A Week
-					</button>
-					<button class="navbar-item button is-primary is-light is-small js-modal-trigger"
-					        data-target="new-task-modal">Due In Next Week
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</nav>
+<div class="columns">
+    <div class="column has-text-centered top-bar">
+        <div>
+            <div class="heading">Incomplete Todos</div>
+            <div class="heading">{{ todo_total }}</div>
+        </div>
+    </div>
+
+    <div class="column has-text-centered top-bar">
+        <div><span class="heading title is-4">TODO</span>
+            <button class="button action-button is-primary is-outlined is-small is-rounded js-modal-trigger"
+                    data-target="new-task-modal">Add Task
+            </button>
+            <br><br>
+            <button class="button action-button is-primary is-outlined is-small is-rounded" id="menu-button">Filters
+            </button>
+        </div>
+    </div>
+    <div class="column has-text-centered top-bar">
+        <div>
+            <div class="heading">Total Completion Time</div>
+            {% if time == None %}
+            <div class="heading">N/A</div>
+            {% else %}
+            <div class="heading">{{ time }} Minutes</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="has-text-centered" id="action-menu">
+    <hr class="body-div">
+    <div class="action-menu-title">Priority Filters</div>
+    <br>
+    <form action="{{ url_for('query') }}" method="post">
+        <button class="button action-button is-danger is-outlined is-small is-rounded" name="high"
+                type="submit"
+                value="high">
+            High Priority
+        </button>
+
+        <button class="button action-button is-warning is-outlined is-small is-rounded" name="medium"
+                value="medium">Medium
+            Priority
+        </button>
+        <button class="button action-button is-info is-outlined is-small is-rounded" name="low" value="low">
+            Low
+            Priority
+        </button>
+        <br>
+        <button class="button action-button is-info is-outlined is-small is-rounded" name="all" value="all">
+            All
+            Priorities
+        </button>
+    </form>
+    <hr class="filter-div">
+    <div class="action-menu-title">Time Filters</div>
+    <br>
+    <form action="{{ url_for('query') }}" method="post">
+        <button class="button action-button is-primary is-outlined is-small is-rounded" name="over-week"
+                value="over-week">On List For More Than A Week
+        </button>
+        <button class="button action-button is-primary is-outlined is-small is-rounded" name="due-week"
+                value="due-week">Due In Next Week
+        </button>
+    </form>
+    <hr class="filter-div">
+    <div class="action-menu-title">Category Filters</div>
+    <br>
+    <form action="{{ url_for('query') }}" method="post">
+        {% for c in categories %}
+        <button class="button action-button is-primary is-outlined is-small is-rounded"
+                name="category-query"
+                value="{{ c }}">{{ c }}
+        </button>
+        {% endfor %}
+    </form>
+    <hr class="filter-div">
+    <div class="action-menu-title">Completion Filters</div>
+    <br>
+    <form action="{{ url_for('query') }}" method="post">
+        <button class="button action-button is-primary is-outlined is-small is-rounded" name="complete"
+                value="1">Completed Tasks
+        </button>
+        <button class="button action-button is-primary is-outlined is-small is-rounded" name="incomplete"
+                value="0">Incomplete Tasks
+        </button>
+    </form>
+</div>
+<hr class="body-div">

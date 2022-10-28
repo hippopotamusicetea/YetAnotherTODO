@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Todo App</title>
 	<link href="static/css/style.css" rel="stylesheet" type="text/css">
-	<link href="https://unpkg.com/bulmaswatch/darkly/bulmaswatch.min.css" rel="stylesheet">
-	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulmaswatch/0.8.1/darkly/bulmaswatch.min.css" integrity="sha512-lLXTQR9X0YWtbfqUt47t7cXs2b7SWbMqGD4YdOYkCXDeTCm4+Mm84OhHl/pz2sd6ievpE+VE+/qdtvJE8uhcdA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="/static/js/todo.js"></script>
 	<script src="/static/js/notification.js"></script>
 	<link
@@ -20,11 +20,14 @@
 <body>
 
 
-{% include "_statsbar.html" %}
+{% include "_topbar.html" %}
 {% block content %}
 {% endblock %}
 
-{% include "_newtask.html" %}
+{% include "_createtask.html" %}
+{% include "_createsubtask.html" %}
+{% include "_edittask.html" %}
+{% include "_editsubtask.html" %}
 {{ toastr.include_toastr_js() }}
 
 {% block script %}

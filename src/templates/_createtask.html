@@ -1,0 +1,93 @@
+<div class="modal" id="new-task-modal">
+    <div class="modal-background">
+        <div class="modal-content animate__animated animate__zoomIn animate__faster">
+            <div class="box" id="new-task-form">
+                <div class="card">
+                    <button class="delete"></button>
+                    <div class="card-content">
+                        <div class="title has-text-centered">Add Task</div>
+                        <form action="{{ url_for('add_task') }}" id="new-task" method="POST">
+
+                            <div class="field">
+                                <label class="label is-small" for="name">Todo Name</label>
+                                <div class="control">
+                                    <input class="input is-primary is-small" id="name" name="name" required type="text">
+                                </div>
+                            </div>
+
+                            <div class="level">
+                                <div class="level-item">
+                                    <div class="field">
+                                        <label class="label is-small" for="priority">Priority</label>
+                                        <div class="control">
+                                            <div class="select is-primary is-small">
+                                                <select id="priority" name="priority" required>
+                                                    <option>High</option>
+                                                    <option>Medium</option>
+                                                    <option>Low</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="level-item">
+                                    <div class="field">
+                                        <label class="label is-small" for="category">Category</label>
+                                        <div class="control">
+                                            <div class="select is-primary is-small">
+                                                <select id="category" name="category" required>
+                                                    {% for y in categories %}
+                                                    <option>{{ y }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="level-item">
+                                    <div class="field">
+                                        <label class="label is-small" for="category">List</label>
+                                        <div class="control">
+                                            <div class="select is-primary is-small">
+                                                <select id="list" name="list" required>
+                                                    <option>Week</option>
+                                                    <option>Month</option>
+                                                    <option>Year</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label is-small" for="duedate">Due Date</label>
+                                <div class="control">
+                                    <input class="input is-primary is-small" id="duedate" name="duedate" type="date"
+                                           required>
+                                </div>
+                            </div>
+
+
+                            <div class="field">
+                                <label class="label is-small" for="body">Details</label>
+                                <div class="control">
+										<textarea class="textarea is-primary is-small" id="body" name="body" required
+                                                  rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <input id="complete" name="complete" type="hidden" value="0">
+                            <input id="raised" name="raiseddate" type="hidden">
+                            <footer class="card-footer">
+                                <button class="button is-primary is-fullwidth m-2" type="submit">Submit</button>
+                            </footer>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,90 +2,109 @@
 {% block content %}
 
 <section class="is-active">
-	{% if filter %}
-	<div class="level">
-		<div class="level-item">Filter: {{ filter }}
-		</div>
-	</div>
-	{% endif %}
-	{% if not todos %}
-	<div class="todo-card animate__animated animate__zoomIn" id="empty-card">
-		<div class="card m-3">
-			<div class="card-content">
-				<div class="content is-small has-text-centered">
-					<p class="title is-4">No Todos</p>
-					<p class="subtitle is-6">Well Done!</p>
-				</div>
-			</div>
-		</div>
-	</div>
+    {% if filter %}
+    <div class="level">
+        <div class="level-item">Filter: {{ filter }}
+        </div>
+    </div>
+    {% endif %}
+    {% if not todos %}
+    <div class="todo-card animate__animated animate__zoomIn animate__faster" id="empty-card">
+        <div class="card m-3">
+            <div class="card-content">
+                <div class="content is-small has-text-centered">
+                    <p class="title is-4">No Todos</p>
+                    <p class="subtitle is-6">Well Done!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	{% endif %}
-	{% for x in todos %}
+    {% endif %}
+    {% for x in todos %}
 
-	<div class="todo-card animate__animated animate__zoomIn" id="todo-card">
-		<div class="card m-3">
-			<header class="card-header">
-				<p class="card-header-title is-centered is-size-6">{{ x.name }}</p>
-			</header>
-			<div class="card-content">
-				<div class="content is-small">
-					<form method="POST" name="id-form">
-						<input name="record-id" type="hidden" value="{{ x.id }}">
-						<input name="name" type="hidden" value="{{ x.name }}">
-						<div class="columns">
-							<div class="column">
-								<div class="content todo-content">{{ x.body }}</div>
-								<hr class="todo-div">
-							</div>
+    <div class="todo-card animate__animated animate__zoomIn animate__faster" id="todo-card">
+        <div class="card m-3">
+            <header class="card-header">
+                <p class="card-header-title is-centered is-size-6">{{ x.name }}</p>
+            </header>
+            <div class="card-content">
+                <div class="content is-small">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="content todo-content">{{ x.body }}</div>
+                            <hr class="todo-div">
+                            {% include "_subtask.html" with context %}
+                            <div class="level">
+                                <div class="level-item">
+                                    <button class="button action-button is-primary is-outlined is-small is-rounded js-modal-trigger"
+                                            data-target="new-subtask-modal" data-id="{{ x.id }}"
+                                            data-name="{{ x.name }}">Add Subtask
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-							<div class="column is-one-quarter has-text-centered">
-								<strong>Priority</strong><br>
-								{% if x.priority == "High" %}
-								<span class="has-text-danger">{{ x.priority }}</span>
-								{% elif x.priority == "Medium" %}
-								<span class="has-text-warning">{{ x.priority }}</span>
-								{% elif x.priority == "Low" %}
-								<span class="has-text-success">{{ x.priority }}</span>
-								{% endif %}
+                        <div class="column is-one-fifth has-text-centered">
+                            <strong>Priority</strong><br>
+                            {% if x.priority == "High" %}
+                            <span class="has-text-danger">{{ x.priority }}</span>
+                            {% elif x.priority == "Medium" %}
+                            <span class="has-text-warning">{{ x.priority }}</span>
+                            {% elif x.priority == "Low" %}
+                            <span class="has-text-success">{{ x.priority }}</span>
+                            {% endif %}
+                            <br><br>
 
-								<br><br>
-								<strong>Current Status</strong><br>
-								{% if x.complete == "1" %}
-								<span class="has-text-success">Complete</span>
-								{% elif x.complete == "0" %}
-								<span class="has-text-danger">Incomplete</span>
-								{% endif %}
-								<br><br>
-								<strong>Raised Date</strong><br>
-								{{ x.raiseddate }}
-								<br><br>
-								<strong>Due Date</strong><br>
-								{{ x.duedate }}
-								<br><br>
-							</div>
-						</div>
-						<div class="buttons is-grouped is-centered mg-small">
-							<button class="card-footer-item button is-success is-outlined is-rounded is-small"
-							        formaction="{{ url_for('complete') }}"
-							        id="complete">Complete
-							</button>
-							<button class="card-footer-item button is-small is-warning is-outlined is-rounded js-modal-trigger"
-							        formaction="{{ url_for('update', todo_id=x.id) }}"
-							        id="edit">Edit
-							</button>
-							<button class="card-footer-item is-small is-danger is-outlined is-rounded button"
-							        formaction="{{ url_for('delete') }}"
-							        id="delete">Delete
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                            <strong>Current Status</strong><br>
+                            {% if x.complete == "1" %}
+                            <span class="has-text-success">Complete</span>
+                            {% elif x.complete == "0" %}
+                            <span class="has-text-danger">Incomplete</span>
+                            {% endif %}
+                            <br><br>
 
-	{% endfor %}
+                            <strong>Raised Date</strong><br>
+                            {{ x.raiseddate|formatdatetime }}
+                            <br><br>
+
+                            <strong>Due Date</strong><br>
+                            {{ x.duedate|formatdatetime }}
+                            <br><br>
+
+                            <strong>Category</strong><br>
+                            {{ x.category }}
+                            <br><br>
+                        </div>
+                    </div>
+
+                    <form method="POST" name="id-form" id="id-form">
+                        <input name="record-id" type="hidden" value="{{ x.id }}">
+                        <input name="name" type="hidden" value="{{ x.name }}">
+                                            </form>
+                        <div class="buttons is-grouped is-centered mg-small">
+                            <button class="card-footer-item button is-success is-outlined is-rounded is-small"
+                                    formaction="{{ url_for('complete') }}"
+                                    form="id-form"
+                                    id="complete">Complete
+                            </button>
+                            <button class="card-footer-item button is-small is-warning is-outlined is-rounded js-modal-trigger"
+                                    data-target="edit-task-modal" data-id="{{ x.id }}"
+                                    id="edit">Edit
+                            </button>
+                            <button class="card-footer-item is-small is-danger is-outlined is-rounded button"
+                                    formaction="{{ url_for('delete') }}"
+                                                                        form="id-form"
+                                    id="delete">Delete
+                            </button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
 </section>
 {% endblock %}
 {% block script %}
